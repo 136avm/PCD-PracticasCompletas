@@ -95,6 +95,7 @@ class MonitorMesa {
 	private ReentrantLock l = new ReentrantLock(true);
 	private Condition[] mesas = new Condition[Banco.NMESAS];
 	private int[] esperaMesas = new int[Banco.NMESAS];
+	private boolean[] condMesas = { true, true, true, true };
 
 	public MonitorMesa() {
 		for (int i = 0; i < mesas.length; i++) {
@@ -112,7 +113,6 @@ class MonitorMesa {
 				if (esperaMesas[i] < minEspera) {
 					minEspera = esperaMesas[i];
 					minIdx = i;
-
 				}
 			}
 			return minIdx;
@@ -125,9 +125,10 @@ class MonitorMesa {
 		l.lock();
 		try {
 			esperaMesas[idMesa] += espera;
-			while (l.hasWaiters(mesas[idMesa])) {
+			while (condMesas[idMesa] == false) {
 				mesas[idMesa].await();
 			}
+			condMesas[idMesa] = false; 
 		} finally {
 			l.unlock();
 		}
@@ -137,6 +138,7 @@ class MonitorMesa {
 		l.lock();
 		try {
 			esperaMesas[idMesa] -= espera;
+			condMesas[idMesa] = true;
 			mesas[idMesa].signal();
 		} finally {
 			l.unlock();
