@@ -107,7 +107,7 @@ class MonitorMesa {
 	public int elegirMesa() {
 		l.lock();
 		try {
-			int minEspera = Integer.MAX_VALUE;
+			int minEspera = esperaMesas[0];
 			int minIdx = 0;
 			for (int i = 0; i < esperaMesas.length; i++) {
 				if (esperaMesas[i] < minEspera) {
