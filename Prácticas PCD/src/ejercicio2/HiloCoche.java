@@ -1,9 +1,13 @@
 package ejercicio2;
 
 /**
- * Clase que representa un coche que cruza
- * Dependiendo de su dirrección actual, manejará distintos semáforos manteniendo la misma lógica entre ambas posibles direcciones
- * Intentará cruzar si le es posible e irá despertando otros hilos dependiendo de la circunstancia, para luego dar la vuelta y cambiar de dirección
+ * Clase que representa un coche que cruza.
+ * 
+ * Dependiendo de su dirección actual, manejará distintos semáforos manteniendo la misma lógica entre ambas posibles direcciones.
+ * Intentará cruzar si le es posible e irá despertando otros hilos dependiendo de la circunstancia, para luego dar la vuelta y cambiar de dirección.
+ * 
+ * @author Álvaro Aledo Tornero
+ * @author Antonio Vergara Moya
  */
 public class HiloCoche extends Thread {
     private Direcciones direccion = Direcciones.NORTE_SUR;

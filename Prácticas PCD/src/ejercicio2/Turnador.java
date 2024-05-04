@@ -1,8 +1,12 @@
 package ejercicio2;
 
 /**
- * Clase que se encarga de cambiar el turno cada 5 segundos
- * Se encarga de modificar la variable turno y de imprimir el turno actual
+ * Clase que se encarga de cambiar el turno cada 5 segundos.
+ * 
+ * Se encarga de modificar la variable turno y de imprimir el turno actual.
+ * 
+ * @author Álvaro Aledo Tornero
+ * @author Antonio Vergara Moya
  */
 public class Turnador extends Thread{
 

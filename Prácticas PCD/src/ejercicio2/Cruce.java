@@ -5,18 +5,21 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
-
 /**
+ * Clase principal que contiene el punto de entrada principal (main) y las variables compartidas que permiten el funcionamiento del cruce.
+ * Inicializa todos los hilos (coches y peatones) y los lanza.
+ * 
+ * Permite la coordinación y el cruce de vehículos y peatones en un punto de intersección.
+ * Controla el turno y las colas de espera para cada dirección y tipo de usuario.
+ * Proporciona constantes para los tiempos de espera y los límites de vehículos y peatones.
+ * 
+ * Los vehículos y peatones se gestionan a través de hilos (Threads).
+ * 
  * @author Álvaro Aledo Tornero
  * @author Antonio Vergara Moya
- * Clase principal que contiene el main y las variables compartidas que permiten que el cruce exista.
- * Inicializa todos los hilos y los lanza.
-
  */
-
-
 public class Cruce {
-    //Constantes y semáforos usados como colas
+    // Constantes y semáforos usados como colas
     public static final int MAX_VEHICULOS = 4;
     public static final int MAX_PEATONES = 10;
     public static final int TIEMPO_PEATON = 3000;
@@ -35,9 +38,11 @@ public class Cruce {
     public static Semaphore colaEO = new Semaphore(0);
     public static Semaphore colaPE = new Semaphore(0);
 
-
-
-    //Iniciamos el cruce
+    /**
+     * Método principal que inicia el cruce de vehículos y peatones.
+     * 
+     * @param args Los argumentos de la línea de comandos (no se utilizan en este caso).
+     */
     public static void main(String[] args) {
 
         List<Thread> trafico = new LinkedList<Thread>();

@@ -2,9 +2,12 @@ package ejercicio2;
 
 /**
  * Clase que representa un peatón que cruza la intersección, se comporta de manera similar a los coches.
- * Intentará cruzar si le es posible e irá despertando otros hilos dependiendo de la circunstancia, para luego volver a empezar
+ * 
+ * Intentará cruzar si le es posible e irá despertando otros hilos dependiendo de la circunstancia, para luego volver a empezar.
+ * 
+ * @author Álvaro Aledo Tornero
+ * @author Antonio Vergara Moya
  */
-
 public class HiloPeaton extends Thread{
 
     public void run() {
@@ -12,7 +15,7 @@ public class HiloPeaton extends Thread{
             while (true) {
 
                 Cruce.mutex.lock();
-                //Si no es nuestro turno o hay otra gente pasando o ya esta el cruce lleno nos esperamos a que nos avisen
+                //Si no es nuestro turno o hay otra gente pasando o ya está el cruce lleno, nos esperamos a que nos avisen
                 if(Cruce.cochesEO > 0 || Cruce.cochesNS > 0 || Cruce.peatones >= Cruce.MAX_PEATONES || Cruce.turno != 0) {
                     Cruce.peatonesEsp++;
                     Cruce.mutex.unlock();
