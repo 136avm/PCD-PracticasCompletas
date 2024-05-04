@@ -2,17 +2,25 @@ package ejercicio1;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-//Hilo usado para operar en un fragmento de arrayGrande y escrbir su resultado en arrayParte con exclusión Mutua
-
+/**
+ * Hilo usado para operar en un fragmento de arrayGrande y escribir su resultado en arrayPartes con exclusión mutua.
+ * @author Álvaro aledo tornero
+ * @author Antonio Vergara Moya
+ */
 public class HiloConsumidor implements Runnable {
-    //Atributos
+    // Atributos
     private final int inicio;
     private int numero = 0;
     private int operador = 0;
     private int resultado = 0;
     private ReentrantLock l = new ReentrantLock();
 
-    //Constructor
+    // Constructor
+    /**
+     * Constructor de la clase HiloConsumidor.
+     * 
+     * @param inicio El índice de inicio del fragmento del arrayGrande.
+     */
     public HiloConsumidor(int inicio) {
         this.inicio = inicio;
     }
