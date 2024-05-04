@@ -4,10 +4,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Clase que simula un cliente que solicita una máquina, imprime un mensaje y usa una mesa. La impresión va por cerrojo.
- * Las mesas y las máquinas las controla una instaccia de MonitorMesa y MonitorMaquina respectivamente.
+ * Las mesas y las máquinas las controla una instancia de MonitorMesa y MonitorMaquina respectivamente.
+ * 
+ * Esta clase extiende la clase Thread y representa un hilo de ejecución para un cliente.
+ * 
+ * @author Álvaro Aledo Tornero
+ * @author Antonio Vergara Moya
  */
-
-class HiloCliente extends Thread {
+public class HiloCliente extends Thread {
     private final int tiempoX;
     private final int tiempoY;
     private final int id;
@@ -15,12 +19,20 @@ class HiloCliente extends Thread {
     private int idMesa;
     ReentrantLock l = new ReentrantLock();
 
+    /**
+     * Constructor de la clase HiloCliente.
+     * 
+     * @param id El identificador único del cliente.
+     */
     public HiloCliente(int id) {
         this.id = id;
         this.tiempoX = (int) (Math.random() * (12000 - 8000 + 1)) + 8000;
         this.tiempoY = (int) (Math.random() * (60000 - 30000 + 1)) + 30000;
     }
 
+    /**
+     * Método que se ejecuta cuando se inicia el hilo.
+     */
     public void run() {
         try {
             this.idMaquina = Banco.maquinas.elegirMaquina();

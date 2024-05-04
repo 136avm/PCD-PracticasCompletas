@@ -3,8 +3,6 @@ package ejercicio4;
 import messagepassing.MailBox;
 
 /**
- * @author Álvaro Aledo Tornero
- * @author Antonio Vergara Moya
  * Clase Tienda
  * Clase principal que inicia el programa. Crea el controlador y los clientes, asignándole a cada uno sus buzones.
  * Inicia todos los hilos y se esperan a que terminen, para indicar que la tienda ha cerrado.
@@ -28,6 +26,12 @@ public class Tienda {
 	public static MailBox[] buzonPedirPantallaCliente = new MailBox[30];
 	public static MailBox[] buzonLiberarPantallaCliente = new MailBox[30];
 	
+	/**
+	 * Método principal para iniciar la simulación de la tienda.
+	 * Crea el controlador y los clientes, asignándoles a cada uno sus buzones respectivos.
+	 * Inicia todos los hilos y espera a que terminen, indicando que la tienda ha cerrado.
+	 * @param args Argumentos de la línea de comandos (no se utilizan).
+	 */
 	public static void main(String[] args) {
 		// Crear controlador y clientes, asignándole a casa uno sus buzones
 		Cliente[] clientes = new Cliente[30];

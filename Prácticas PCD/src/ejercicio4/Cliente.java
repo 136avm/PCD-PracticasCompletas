@@ -7,6 +7,8 @@ import messagepassing.MailBox;
  * Simula el comportamiento de un cliente normal en una tienda. Va siguiendo secuencialmente las acciones normales a
  * medida que el controlador le va dando acceso a las secciones críticas. Compra, pide caja, la usa, la libera e imprime
  * por pantalla su información.
+ * @author Álvaro Aledo Tornero
+ * @author Antonio Vergara Moya
  */
 public class Cliente extends Thread {
 	// Propiedades
@@ -23,6 +25,17 @@ public class Cliente extends Thread {
 	private MailBox buzonLiberarPantallaCliente; 	// Buzón para liberar pantalla usado para recibir en el cliente
 	
 	// Constructor
+	/**
+	 * Constructor de la clase Cliente.
+	 * @param id El identificador único del cliente.
+	 * @param buzon1 Buzón para asignar caja y tiempo utilizado para recibir en el cliente.
+	 * @param buzon2 Buzón para pedir caja A utilizado para recibir en el cliente.
+	 * @param buzon3 Buzón para pedir caja B utilizado para recibir en el cliente.
+	 * @param buzon4 Buzón para liberar caja A utilizado para recibir en el cliente.
+	 * @param buzon5 Buzón para liberar caja B utilizado para recibir en el cliente.
+	 * @param buzon6 Buzón para pedir pantalla utilizado para recibir en el cliente.
+	 * @param buzon7 Buzón para liberar pantalla utilizado para recibir en el cliente.
+	 */
 	public Cliente(int id, MailBox buzon1, MailBox buzon2, MailBox buzon3, MailBox buzon4, MailBox buzon5, MailBox buzon6, MailBox buzon7) {
 		this.id = id;
 		this.tiempoCompra = 0;
@@ -37,6 +50,11 @@ public class Cliente extends Thread {
 	
 	// Método para que el cliente compre
 	// A cada acción manda una solicitud al controlador para que los clientes vayan ordenadamente y con exclusión mutua
+	/**
+	 * Método que simula el comportamiento de compra del cliente.
+	 * El cliente realiza varias acciones secuenciales como hacer la compra, solicitar una caja, pagar y liberar la caja.
+	 * También imprime por pantalla su información después de cada acción.
+	 */
 	public void run() {
 		for(int i=0; i<5; i++) {
 
@@ -77,7 +95,7 @@ public class Cliente extends Thread {
 				Tienda.buzonLiberarBTienda.send(id);
 				buzonLiberarBCliente.receive();
 			}
-			// Imprimo por pantalla mi información
+				// Imprimo por pantalla mi información
 			Tienda.buzonPedirPantallaTienda.send(id);
 			buzonPedirPantallaCliente.receive();
 			System.out.println("--------------------------------------------------------------" +

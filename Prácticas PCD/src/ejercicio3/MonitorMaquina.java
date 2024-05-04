@@ -4,15 +4,25 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- *  Clase que contiene el monitor que controla las máquinas. Contiene métodos para poder elegir una máquina y liberarla.
- *  Permite que los clientes se queden bloqueados si no hay máquinas disponibles y que puedan despertar a otro tras terminar de usar su máquina
+ * Clase que contiene el monitor que controla las máquinas.
+ * Permite elegir una máquina y liberarla. Los clientes pueden quedar bloqueados si no hay máquinas disponibles.
+ * 
+ * Las máquinas se gestionan mediante un array de booleanos que indica si están ocupadas o no.
+ * 
+ * @author Álvaro Aledo Tornero
+ * @author Antonio Vergara Moya
  */
-
-class MonitorMaquina {
+public class MonitorMaquina {
     ReentrantLock l = new ReentrantLock(true);
     private Condition maquinas = l.newCondition();
     private boolean[] estadoMaquinas = {true, true, true};
-    // Selecciona una máquina libre y la bloquea, si no hay una libre se queda esperando
+
+    /**
+     * Método que elige una máquina libre y la bloquea. Si no hay una máquina libre, el cliente queda bloqueado hasta que una esté disponible.
+     * 
+     * @return El índice de la máquina elegida.
+     * @throws InterruptedException si el hilo actual es interrumpido mientras espera
+     */
     public int elegirMaquina() throws InterruptedException {
         l.lock();
         try {
@@ -29,7 +39,12 @@ class MonitorMaquina {
             l.unlock();
         }
     }
-    // Libera una máquina y avisa por si hay alguien esperando para usarla
+
+    /**
+     * Método que libera una máquina y avisa si hay clientes esperando para usarla.
+     * 
+     * @param id El índice de la máquina a liberar.
+     */
     public void liberarMaquina(int id) {
         l.lock();
         try {

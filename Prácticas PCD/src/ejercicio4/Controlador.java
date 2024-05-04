@@ -7,6 +7,8 @@ import messagepassing.Selector;
  * Clase Controlador
  * Clase encargada de asignar cajas y tiempo de compra a los clientes, y de gestionar el uso de las cajas y la pantalla.
  * Funciona continuamente sin parar.
+ * @author Álvaro Aledo Tornero
+ * @author Antonio Vergara Moya
  */
 public class Controlador extends Thread {
 	// Propiedades
@@ -22,6 +24,16 @@ public class Controlador extends Thread {
 	private MailBox buzonLiberarPantallaControlador; 	// Buzón para liberar pantalla usado para recibir en el controlador
 	
 	// Constructor
+	/**
+	 * Constructor de la clase Controlador.
+	 * @param buzon1 Buzón para asignar caja y tiempo utilizado para recibir en el controlador.
+	 * @param buzon2 Buzón para pedir caja A utilizado para recibir en el controlador.
+	 * @param buzon3 Buzón para pedir caja B utilizado para recibir en el controlador.
+	 * @param buzon4 Buzón para liberar caja A utilizado para recibir en el controlador.
+	 * @param buzon5 Buzón para liberar caja B utilizado para recibir en el controlador.
+	 * @param buzon6 Buzón para pedir pantalla utilizado para recibir en el controlador.
+	 * @param buzon7 Buzón para liberar pantalla utilizado para recibir en el controlador.
+	 */
 	public Controlador(MailBox buzon1, MailBox buzon2, MailBox buzon3, MailBox buzon4, MailBox buzon5, MailBox buzon6, MailBox buzon7) {
 		this.pantallaUsada = false;
 		this.cajasOcupadas = new boolean[2];
@@ -44,6 +56,11 @@ public class Controlador extends Thread {
 	}
 	
 	// Método para que el controlador trabaje
+	/**
+	 * Método que simula el comportamiento de trabajo continuo del controlador.
+	 * El controlador asigna cajas y tiempo de compra a los clientes, y gestiona el uso de las cajas y la pantalla.
+	 * Funciona en un bucle continuo sin parar.
+	 */
 	public void run() {
 		while(true) {
 			//El buzón con el que se selecciona caja y tiempo de compra se puede leer siempre
